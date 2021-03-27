@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="jquery-ui.css" rel="stylesheet">
+	<style>
+	body{
+		font-family: "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#modal_form {
+	width: 300px; 
+	height: 300px; /* Рaзмеры дoлжны быть фиксирoвaны */
+	border-radius: 5px;
+	border: 3px #000 solid;
+	background: #fff;
+	position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+	top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+	left: 50%; /* пoлoвинa экрaнa слевa */
+	margin-top: -150px;
+	margin-left: -150px; /* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) */
+	display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+	opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+	z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+	padding: 20px 10px;
+}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	.ui-textfield {
+    font: inherit;
+    color: inherit;
+    background: none;
+    text-align: inherit;
+    outline: none;
+    cursor: text;	
+	}
+	
+	select {
+		width: 200px;
+	}
+	TD.leftcol {
+    width: 110px;
+    vertical-align: middle;
+    }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+	</style>
+</head>
+<body>
+
+<h1>Продаем животных</h1>
+
+<div class="ui-widget">
+</div>
+
+<h2 class="demoHeaders">А вот и сами животные</h2>
+<div id="accordion">
+	<h3>Джек рассел терьер</h3>
+	<div><table width="100%" cellspacing="0" cellpadding="0">
+		<tr> 
+			<td class="leftcol"><img src="images/sepik.jpg" 
+			width="100" height="150"></td>
+			<td valign="top">Джек рассел терьер - умная, любознательная, активная, 
+игривая и безмерно любящая детей порода. Это веселое, подвижное, полное энергии и сил 
+существо, большой охотник в маленьком теле. Обязательно потребует длительных прогулок с физическими нагрузками. 
+Порода подходит для активных и спортивных людей, для охотника или путешественника она станет надежным спутником.</td>
+		</tr>
+		<tr> 
+			<td class="leftcol" valign="middle">25000 руб.</td>
+			<td valign="top"><button id="buystrat">Купить</button></td>
+		</tr>
+	</table></div>
+	<h3>Кролик</h3>
+	<div><div><table width="100%" cellspacing="0" cellpadding="0">
+		<tr> 
+			<td class="leftcol" valign="middle"><img src="images/rabbit.jpg" 
+			width="110" height="150"></td>
+			<td valign="top">Кролики  - животные, которых сегодня трудно представить дикими. Ныне они выращиваются кролиководами в специальных условиях.
+Среди пород, выведенных в результате одомашнивания кроликов, можно условно выделить несколько направлений – мясные, пуховые, мясо-шкурковые виды.
+Кролик принадлежит к роду млекопитающих из семейства зайцев, однако в отличие от зайцев маленькие крольчата рождаются слепыми и без шерстки. 
+Дикие кролики растят свое потомство преимущественно в норах, и в этом тоже состоит их основное отличие от зайцев. 
+Приручить этих милых животных при желании очень просто, достаточно регулярно проявлять к ним внимание.</td>
+		</tr>
+		<tr> 
+			<td class="leftcol">10000 руб.</td>
+			<td valign="top"><button id="buytele">Купить</button></td>
+		</tr>
+	</table></div></div>
+	<h3>Кошка домашняя</h3>
+	<div><div><table width="100%" cellspacing="0" cellpadding="0">
+		<tr> 
+			<td class="leftcol"><img src="images/2803089410.jpg" 
+			width="110" height="167"></td>
+			<td valign="top">Кошка домашняя (Felis catus), самый мелкий представитель хищных млекопитающих семейства кошачьих (Felidae)
+ и одно из первых животных, одомашненных человеком. Судя по всему, вид происходит от дикой лесной кошки Старого Света,
+ которая очень похожа на домашнюю, но в среднем несколько крупнее, а точнее, от ее африканско-ближневосточного подвида, или степной кошки, 
+иногда выделяемой в особый вид (F. libyca).</td>
+		</tr>
+		<tr> 
+			<td class="leftcol">5000 руб.</td>
+			<td valign="top"><button id="buyjag">Купить</button></td>
+		</tr>
+	</table></div></div>
+</div>
+<div id="dialog-form">
+  <form>
+    <fieldset>
+		<h4>ФИО <input type="text" id="fio" style = "ui-textfield"> </br> </h4>
+		<h4>Количество
+		<select name="minbeds" id="minbeds">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+			<option>9</option>
+			<option>10</option>
+		</select> </h4>
+		<h4><div id="slider"> </br> </h4>
+		<h4>Дата доставки <input type="text" id="datepicker" style = "ui-textfield"></br> </h4>
+		<h4>Город
+		<select name="town" id="town">
+			<option>Уфа</option>
+			<option>Стерлитамак</option>
+			<option selected="selected">Ишимбай</option>
+		</select> </br> </h4>
+		<h4>Адрес <input id="autocomplete"> </br> </h4>
+		<h4>Номер клубной карты <input id="card" type="text" style = "ui-textfield" title="Нет номера карты?"> </br> </h4>
+		<h4>Итоговая цена <input type="text" id = "result" style = "ui-textfield" readonly> </br> </h4>
+	</fieldset>
+  </form>
+</div>
+<div id="dialog-confirm" title="Оформить покупку?">
+    <fieldset>
+		<p>Вы обещаете, что действительно будете ухаживать и любить этих животных?</p>
+	</fieldset>
+</div>
+<div id="thankyou" title="Спасибо за заказ!">
+    <fieldset>
+		<p>До скорой встречи!</p>
+	</fieldset>
+</div>
+<div id="becareful" title="Проверьте правильность данных">
+    <fieldset>
+		<p>Проверьте правильность заполнения полей</p>
+	</fieldset>
+</div>
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
+<script>
+var price;
+$( "#accordion" ).accordion();
+$( "#buystrat" ).button()
+		.click(function(event){
+			price = 25000;
+			$( "#result" ).val(86800);
+			$( "#tempname" ).val("Купить Джек рассел терьер");
+			$( "#dialog-form" ).dialog("option","title","Купить Джек рассел терьера");
+			$( "#dialog-form" ).dialog( "open" );
+		});
+$( "#buytele" ).button()
+		.click(function(){
+			price = 10000;
+			$( "#result" ).val(10000);
+			$( "#dialog-form" ).dialog("option","title","Купить кролика");
+			$( "#dialog-form" ).dialog( "open" );
+        });
+$( "#buyjag" ).button()
+		.click(function(){
+			price = 184000;
+			$( "#result" ).val(5000);
+			$( "#dialog-form" ).dialog("option","title","Купить кошку домашнюю");
+			$( "#dialog-form" ).dialog( "open" );
+        });
+	$('#datepicker').datepicker({
+	dateFormat : "dd.mm.yy",
+	minDate: new Date($('#hiddendelivdate').val()),
+	monthNames : ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+	dayNamesMin : ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+});
+	$( "#card" ).tooltip();
+	$( "#dialog-form" ).dialog({
+    autoOpen: false,
+    height: 550,
+    width: 500,
+    modal: true,
+    buttons: {
+        "Оформить": function() {
+			if ($('#fio').val() == '' || $('#datepicker').val() == '' || $('#autocomplete').val() == '' || $('#card').val() == ''){
+				$( "#becareful" ).dialog("open");
+			}
+			else {
+				$( "#dialog-confirm" ).dialog("open");
+			}
+        }
+		},
+		close : function(event, ui) {
+			$('#fio').val('');
+			$('#datepicker').val('');
+			$('#autocomplete').val('');
+			$('#card').val('');
+			slider.slider( "value", 0);
+			select[ 0 ].selectedIndex = 0;
+		}
+    });
+	$( "#town" ).selectmenu();
+	var select = $( "#minbeds" )
+	.on( "change", function() {
+      slider.slider( "value", this.selectedIndex + 1 );
+		$( "#result" ).val(((this.selectedIndex+1)*price));
+    });
+	var slider = $( "#slider" ).slider({
+		min: 1,
+		max: 10,
+		range: "min",
+		value: select[ 0 ].selectedIndex + 1,
+		  slide: function( event, ui ) {
+			select[ 0 ].selectedIndex = ui.value - 1;
+			$( "#result" ).val((ui.value*price));
+		  }
+	});
+	var availableTags = [
+		"ул. Первомайская, д. 75, кв. 31",
+		"ул. Тухвата Янаби, д. 49, кв. 116"
+	];
+	$( "#autocomplete" ).autocomplete({
+		source: availableTags
+	});
+		$( "#dialog-confirm" ).dialog({
+			autoOpen: false,
+			resizable: false,
+			height: "auto",
+			width: 400,
+			modal: true,
+			buttons: {
+					"Купить питомца": function() {
+						$( this ).dialog( "close" );
+							$( "#dialog-form" ).dialog( "close");
+							$( "#thankyou" ).dialog("open");
+					},
+					"Я подумаю": function() {
+						$( this ).dialog( "close" );
+						$( "#dialog-form" ).dialog( "close");
+					}
+				}
+			});
+			$( "#thankyou" ).dialog({
+			autoOpen: false,
+			resizable: false,
+			height: "auto",
+			width: 400,
+			modal: true,
+			buttons: {
+					"Закрыть": function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+			$( "#becareful" ).dialog({
+			autoOpen: false,
+			resizable: false,
+			height: "auto",
+			width: 400,
+			modal: true,
+			buttons: {
+					"Закрыть": function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+</script>
+</body>
+</html>
